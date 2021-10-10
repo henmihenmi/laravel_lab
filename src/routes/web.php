@@ -5,7 +5,6 @@ use App\Http\Controllers\GoodbyeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +22,4 @@ Route::get('/', function () {
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/goodbye', [GoodbyeController::class, 'index']);
 Route::get('/bbs', [BbsController::class, 'index']);
+Route::post('/bbs', [BbsController::class, 'create']);
