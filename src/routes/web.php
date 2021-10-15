@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BbsController;
 use App\Http\Controllers\Github\GithubController;
 use App\Http\Controllers\GoodbyeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,5 @@ Route::get('login/github', [LoginController::class, 'redirectToProvider']);
 Route::get('login/github/callback', [LoginController::class, 'handleProviderCallback']);
 
 Route::post('user', [UserController::class, 'updateUser']);
+Route::get('/', [HomeController::class, 'index']);
+Route::post('/upload', [HomeController::class, 'upload']);
