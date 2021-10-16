@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BbsController;
+use App\Http\Controllers\Github\GithubController;
 use App\Http\Controllers\GoodbyeController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +27,12 @@ Route::get('/user', [UserController::class, 'index']);
 Route::get('/goodbye', [GoodbyeController::class, 'index']);
 Route::get('/bbs', [BbsController::class, 'index']);
 Route::post('/bbs', [BbsController::class, 'create']);
+
+Route::get('github', [GithubController::class, 'top']);
+Route::post('github/issue', [GithubController::class, 'createIssue']);
+Route::get('login/github', [LoginController::class, 'redirectToProvider']);
+Route::get('login/github/callback', [LoginController::class, 'handleProviderCallback']);
+
+Route::post('user', [UserController::class, 'updateUser']);
+Route::get('/', [HomeController::class, 'index']);
+Route::post('/upload', [HomeController::class, 'upload']);
