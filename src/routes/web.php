@@ -31,7 +31,7 @@ Route::get('/bbs', [BbsController::class, 'index']);
 Route::post('/bbs', [BbsController::class, 'create']);
 Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
-Route::post('posts', [PostController::class, 'create']);
+Route::post('posts', [PostController::class, 'create'])->name('posts.create');
 
 // Route::get('posts/{id}', [CommentController::class, 'index']);
 Route::post('posts/{id}/comments', [CommentController::class, 'create'])->name('comments.create');

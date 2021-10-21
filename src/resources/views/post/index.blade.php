@@ -29,7 +29,7 @@
 
 <!-- フォームエリア -->
 <h2>フォーム</h2>
-<form action="posts" method="POST">
+<form action="{{ route('posts.create') }}" method="POST">
     名前:<br>
     <input name="name">
     <br>

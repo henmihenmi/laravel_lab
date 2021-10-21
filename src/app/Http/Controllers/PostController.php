@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePost;
 use App\Models\Model\Comment;
 use App\Models\Model\Post;
 use Illuminate\Http\Request;
@@ -17,36 +18,22 @@ class PostController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(CreatePost $request)
     {
-        $request->validate([
-            'name' => 'required|max:10',
-            'content' => 'required',
-        ]);
-
-        $name = $request->name;
-        $content = $request->content;
-
-        Post::insert([
-            'name' => $name,
-            'content' => $content
-        ]);
+        $post = new Post();
+        $post->fill($request->all())->save();
 
         $posts = Post::all();
         return view('post.index', ['posts' => $posts]);
     }
 
-    public function show($post_id)
+    public function show($postId)
     {
-        $post = Post::find($post_id);
-        // dd($post);
-
-        $comments = Post::find($post_id)->comments;
-        // dd($comments);
+        $post = Post::with('comments')->findOrFail($postId);
 
         return view('post.show', [
             'post' => $post,
-            'comments' => $comments,
+            'comments' => $post->comments,
         ]);
     }
 }
