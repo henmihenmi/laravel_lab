@@ -14,11 +14,19 @@ class CommentController extends Controller
     {
         $post = Post::find($id);
         $post->comments()->create($request->all());
-        $comments = Comment::all();
 
-        return redirect()->route('posts.show', [
-            'id' => $post,
-            'comments' => $comments,
+        // $comments = Comment::all();
+        // dd($comments);
+
+        // return redirect()->route('posts.show', [
+        //     'id' => $post,
+        //     'comments' => $comments,
+        // ]);
+
+        return view('post.show', [
+            'post' => $post,
+            'comments' => $post->comments,
         ]);
+
     }
 }
