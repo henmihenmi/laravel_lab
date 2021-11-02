@@ -8,7 +8,8 @@ use App\Models\Model\Post;
 
 class Comment extends Model
 {
-    // use HasFactory;
+    use HasFactory;
+
     protected $fillable = ['name', 'comment', 'post_id'];
 
     public function posts()

@@ -30,6 +30,7 @@ class PostController extends Controller
     public function show($postId)
     {
         $post = Post::with('comments')->findOrFail($postId);
+        // dd($post);
 
         return view('post.show', [
             'post' => $post,

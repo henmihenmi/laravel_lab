@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Model\Comment;
 use App\Models\Model\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -22,17 +21,7 @@ class PostTest extends TestCase
     {
         parent::setUp();
 
-        $post = new Post();
-        $post->id = 2;
-        $post->name = "test";
-        $post->content = "test post";
-        $post->save();
-
-        $comment = new Comment();
-        $comment->post_id = 2;
-        $comment->name = 'name';
-        $comment->comment = 'comment';
-        $comment->save();
+        $this->seed();
     }
 
     public function testPostIndex()
@@ -44,8 +33,8 @@ class PostTest extends TestCase
     public function testPostCreate()
     {
         $response = $this->post('posts', [
-            'name' => 'sample',
-            'content' => 'sample content',
+            'name' => 'test name',
+            'content' => 'test content',
         ]);
 
         $response->assertStatus(200);
@@ -56,7 +45,12 @@ class PostTest extends TestCase
 
     public function testPostShow()
     {
-        $response = $this->get('posts/2');
+        $post = Post::first();
+        // dd($post->id);
+        // $response = $this->get("posts/{$post->id}");
+        // $response->assertStatus(200);
+        $response = $this->get(route('posts.show', ['id' => $post->id]));
         $response->assertStatus(200);
+        // dd($response);
     }
 }
