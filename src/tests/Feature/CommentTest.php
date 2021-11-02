@@ -21,24 +21,21 @@ class CommentTest extends TestCase
     {
         parent::setUp();
 
-        $post = new Post();
-        $post->id = 1;
-        $post->name = "test";
-        $post->content = "test post";
-        $post->save();
+        $this->seed();
     }
 
     public function testCommentCreate()
     {
-        $response = $this->post('posts/1/comments', [
-            'post_id' => 1,
+        $post = Post::first();
+        $response = $this->post("posts/{$post->id}/comments", [
+            'post_id' => $post->id,
             'name' => 'sample',
             'comment' => 'sample comment',
         ]);
 
         $response->assertStatus(200);
 
-        $view = $this->get('posts/1');
+        $view = $this->get("posts/{$post->id}");
         $view->assertStatus(200);
     }
 }
