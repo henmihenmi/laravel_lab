@@ -32,25 +32,21 @@ class PostTest extends TestCase
 
     public function testPostCreate()
     {
-        $response = $this->post('posts', [
+        $response = $this->post(route('posts.create', [
             'name' => 'test name',
             'content' => 'test content',
-        ]);
+        ]));
 
         $response->assertStatus(200);
 
-        $view = $this->get('posts');
+        $view = $this->get(route('posts.index'));
         $view->assertStatus(200);
     }
 
     public function testPostShow()
     {
         $post = Post::first();
-        // dd($post->id);
-        // $response = $this->get("posts/{$post->id}");
-        // $response->assertStatus(200);
         $response = $this->get(route('posts.show', ['id' => $post->id]));
         $response->assertStatus(200);
-        // dd($response);
     }
 }

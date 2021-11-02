@@ -27,15 +27,15 @@ class CommentTest extends TestCase
     public function testCommentCreate()
     {
         $post = Post::first();
-        $response = $this->post("posts/{$post->id}/comments", [
-            'post_id' => $post->id,
+        $response = $this->post(route('comments.create', [
+            'id' => $post->id,
             'name' => 'sample',
             'comment' => 'sample comment',
-        ]);
+        ]));
 
         $response->assertStatus(200);
 
-        $view = $this->get("posts/{$post->id}");
+        $view = $this->get(route('posts.index'));
         $view->assertStatus(200);
     }
 }
