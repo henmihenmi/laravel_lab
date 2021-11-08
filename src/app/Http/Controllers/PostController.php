@@ -13,18 +13,23 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('post.index', [
-            'posts' => $posts,
-        ]);
+        return $posts;
+        // return view('post.index', [
+        //     'posts' => $posts,
+        // ]);
     }
 
     public function create(CreatePost $request)
     {
         $post = new Post();
         $post->fill($request->all())->save();
+        return $post;
 
-        $posts = Post::all();
-        return view('post.index', ['posts' => $posts]);
+        // $posts = Post::all();
+
+        // return redirect('posts.index');
+
+        // return view('post.index', ['posts' => $posts]);
     }
 
     public function show($postId)
@@ -32,9 +37,11 @@ class PostController extends Controller
         $post = Post::with('comments')->findOrFail($postId);
         // dd($post);
 
-        return view('post.show', [
-            'post' => $post,
-            'comments' => $post->comments,
-        ]);
+        return $post;
+
+    //     return view('post.show', [
+    //         'post' => $post,
+    //         'comments' => $post->comments,
+    //     ]);
     }
 }

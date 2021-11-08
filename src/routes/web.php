@@ -25,10 +25,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/goodbye', [GoodbyeController::class, 'index']);
-Route::get('/bbs', [BbsController::class, 'index']);
-Route::post('/bbs', [BbsController::class, 'create']);
+// Route::get('/user', [UserController::class, 'index']);
+// Route::get('/goodbye', [GoodbyeController::class, 'index']);
+// Route::get('/bbs', [BbsController::class, 'index']);
+// Route::post('/bbs', [BbsController::class, 'create']);
 Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::post('posts', [PostController::class, 'create'])->name('posts.create');
@@ -36,11 +36,11 @@ Route::post('posts', [PostController::class, 'create'])->name('posts.create');
 // Route::get('posts/{id}', [CommentController::class, 'index']);
 Route::post('posts/{id}/comments', [CommentController::class, 'create'])->name('comments.create');
 
-Route::get('github', [GithubController::class, 'top']);
-Route::post('github/issue', [GithubController::class, 'createIssue']);
-Route::get('login/github', [LoginController::class, 'redirectToProvider']);
-Route::get('login/github/callback', [LoginController::class, 'handleProviderCallback']);
+// Route::get('github', [GithubController::class, 'top']);
+// Route::post('github/issue', [GithubController::class, 'createIssue']);
+// Route::get('login/github', [LoginController::class, 'redirectToProvider']);
+// Route::get('login/github/callback', [LoginController::class, 'handleProviderCallback']);
 
-Route::post('user', [UserController::class, 'updateUser']);
-Route::get('/', [HomeController::class, 'index']);
-Route::post('/upload', [HomeController::class, 'upload']);
+// Route::post('user', [UserController::class, 'updateUser']);
+// Route::get('/', [HomeController::class, 'index']);
+// Route::post('/upload', [HomeController::class, 'upload']);

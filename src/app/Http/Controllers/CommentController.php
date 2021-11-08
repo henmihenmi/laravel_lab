@@ -14,6 +14,8 @@ class CommentController extends Controller
     {
         $post = Post::find($id);
         $post->comments()->create($request->all());
+        // return redirect('api/posts');
+        return $post;
 
         // $comments = Comment::all();
         // dd($comments);
@@ -23,10 +25,10 @@ class CommentController extends Controller
         //     'comments' => $comments,
         // ]);
 
-        return view('post.show', [
-            'post' => $post,
-            'comments' => $post->comments,
-        ]);
+        // return view('post.show', [
+        //     'post' => $post,
+        //     'comments' => $post->comments,
+        // ]);
 
     }
 }
