@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
-Route::get('posts', [PostController::class, 'index'])->name('posts.index');
-Route::post('posts', [PostController::class, 'create'])->name('posts.create');
+Route::get('posts/{id}', [PostController::class, 'show'])->name('api.posts.show');
+Route::get('posts', [PostController::class, 'index'])->name('api.posts.index');
+Route::post('posts', [PostController::class, 'create'])->name('api.posts.create');
 
-Route::post('posts/{id}/comments', [CommentController::class, 'create'])->name('comments.create');
+Route::post('posts/{id}/comments', [CommentController::class, 'create'])->name('api.comments.create');
