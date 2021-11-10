@@ -2,10 +2,6 @@
 
 use App\Http\Controllers\Api\CommentApiController;
 use App\Http\Controllers\Api\PostApiController;
-use App\Http\Controllers\CommentController;
-// use App\Http\Controllers\PostController;
-// use App\Http\Controllers\SampleController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

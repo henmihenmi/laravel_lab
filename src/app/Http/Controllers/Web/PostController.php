@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePost;
-use App\Models\Model\Comment;
 use App\Models\Model\Post;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
