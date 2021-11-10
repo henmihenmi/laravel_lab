@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateComment;
 use App\Models\Model\Comment;
 use App\Models\Model\Post;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class CommentApiController extends Controller
 {
     // $idにはpostテーブルのidが入っている
     public function create($id, CreateComment $request)

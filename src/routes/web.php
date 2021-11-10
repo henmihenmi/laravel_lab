@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BbsController;
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Web\CommentController;
 use App\Http\Controllers\Github\GithubController;
 use App\Http\Controllers\GoodbyeController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Web\PostController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Web;
 
 use App\Models\Model\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class PostApiTest extends TestCase
+class PostTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -24,27 +24,29 @@ class PostApiTest extends TestCase
         $this->seed();
     }
 
-    public function testPostApiIndex()
+    public function testPostIndex()
     {
-        $response = $this->get(route('api.posts.index'));
+        $response = $this->get('posts');
         $response->assertStatus(200);
     }
 
-    public function testPostApiCreate()
+    public function testPostCreate()
     {
-        $response = $this->post(route('api.posts.create', [
+        $response = $this->post(route('posts.create', [
             'name' => 'test name',
             'content' => 'test content',
         ]));
 
-        $response->assertStatus(201);
+        $response->assertStatus(200);
 
+        $view = $this->get(route('posts.index'));
+        $view->assertStatus(200);
     }
 
-    public function testPostApiShow()
+    public function testPostShow()
     {
         $post = Post::first();
-        $response = $this->get(route('api.posts.show', ['id' => $post->id]));
+        $response = $this->get(route('posts.show', ['id' => $post->id]));
         $response->assertStatus(200);
     }
 }

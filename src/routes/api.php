@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\CommentApiController;
+use App\Http\Controllers\Api\PostApiController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostController;
+// use App\Http\Controllers\PostController;
 // use App\Http\Controllers\SampleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +25,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('posts/{id}', [PostController::class, 'show'])->name('api.posts.show');
-Route::get('posts', [PostController::class, 'index'])->name('api.posts.index');
-Route::post('posts', [PostController::class, 'create'])->name('api.posts.create');
+Route::get('posts/{id}', [PostApiController::class, 'show'])->name('api.posts.show');
+Route::get('posts', [PostApiController::class, 'index'])->name('api.posts.index');
+Route::post('posts', [PostApiController::class, 'create'])->name('api.posts.create');
 
-Route::post('posts/{id}/comments', [CommentController::class, 'create'])->name('api.comments.create');
+Route::post('posts/{id}/comments', [CommentApiController::class, 'create'])->name('api.comments.create');
