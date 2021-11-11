@@ -16,7 +16,7 @@ class PostApiTest extends TestCase
      * @return void
      */
 
-     public function setUp() :void
+    public function setUp() :void
     {
         parent::setUp();
 
@@ -26,7 +26,14 @@ class PostApiTest extends TestCase
     public function testPostApiIndex()
     {
         $response = $this->get(route('api.posts.index'));
-        $response->assertStatus(200);
+        $response->assertOk();
+
+        $response->assertJsonStructure([
+            '*' => [
+                'name',
+                'content',
+            ]
+        ]);
     }
 
     public function testPostApiCreate()
@@ -35,15 +42,31 @@ class PostApiTest extends TestCase
             'name' => 'test name',
             'content' => 'test content',
         ]));
+        $response->assertCreated();
 
-        $response->assertStatus(201);
-
+        $this->assertDatabaseHas('posts', [
+            'name' => 'test name',
+            'content' => 'test content',
+        ]);
     }
 
     public function testPostApiShow()
     {
         $post = Post::first();
+
         $response = $this->get(route('api.posts.show', ['id' => $post->id]));
-        $response->assertStatus(200);
+        $response->assertOk();
+
+        $response->assertJsonStructure([
+                'name',
+                'content',
+                'comments' => [
+                    '*' => [
+                        'post_id',
+                        'name',
+                        'comment',
+                    ]
+                ]
+        ]);
     }
 }

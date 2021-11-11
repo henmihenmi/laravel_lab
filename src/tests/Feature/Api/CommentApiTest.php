@@ -26,13 +26,19 @@ class CommentApiTest extends TestCase
     public function testCommentApiCreate()
     {
         $post = Post::first();
+
         $response = $this->post(route('api.comments.create', [
             'id' => $post->id,
             'name' => 'sample',
             'comment' => 'sample comment',
         ]));
+        $response->assertOk();
 
-        $response->assertStatus(200);
+        $this->assertDatabaseHas('comments', [
+            'post_id' => $post->id,
+            'name' => 'sample',
+            'comment' => 'sample comment',
+        ]);
 
     }
 }
